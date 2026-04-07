@@ -9,7 +9,7 @@
 /.idea
 /.project
 *.iml
-node_modules
+/node_modules
 import_test
 teedy-importer-linux
 teedy-importer-macos
@@ -19,3 +19,8 @@ docs/*
 
 #macos
 .DS_Store
+
+# Lab files
+lab/*.pdf
+lab/*.md
+lab/image*.png
