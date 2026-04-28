@@ -628,6 +628,18 @@
           </reportSet>
         </reportSets>
       </plugin>
+
+      <!-- PMD Source Code Analysis Report -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>3.21.0</version>
+        <configuration>
+          <rulesets>
+            <ruleset>PMD/custom-ruleset.xml</ruleset>
+          </rulesets>
+        </configuration>
+      </plugin>
     </plugins>
   </reporting>
 
