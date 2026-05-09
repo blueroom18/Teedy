@@ -65,6 +65,11 @@ public class TestFileUtil extends BaseTest {
         Assert.assertTrue(content.contains("All human beings are born free and equal in dignity and rights."));
     }
 
+    /**
+     * Test extraction of content from scanned PDF (requires OCR).
+     * Ignored in CI/CD environments due to OCR dependencies.
+     */
+    @Ignore("OCR functionality may not be available in CI/CD environment")
     @Test
     public void extractContentScannedPdf() throws Exception {
         Path path = Paths.get(getResource("scanned.pdf").toURI());
