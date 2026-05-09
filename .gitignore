@@ -24,3 +24,6 @@ docs/*
 lab/*.pdf
 lab/*.md
 lab/image*.png
+
+# PMD
+PMD/

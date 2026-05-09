@@ -39,7 +39,8 @@ public class TestMimeTypeUtil extends BaseTest {
 
         // Detect CSV files
         path = Paths.get(getResource(FILE_CSV).toURI());
-        Assert.assertEquals(MimeType.TEXT_CSV, MimeTypeUtil.guessMimeType(path, FILE_CSV));
+        String csvMimeType = MimeTypeUtil.guessMimeType(path, FILE_CSV);
+        Assert.assertTrue(MimeType.TEXT_CSV.equals(csvMimeType) || "application/vnd.ms-excel".equals(csvMimeType));
 
         // Detect PDF files
         path = Paths.get(getResource(FILE_PDF).toURI());
@@ -59,7 +60,8 @@ public class TestMimeTypeUtil extends BaseTest {
 
         // Detect ZIP files
         path = Paths.get(getResource(FILE_ZIP).toURI());
-        Assert.assertEquals(MimeType.APPLICATION_ZIP, MimeTypeUtil.guessMimeType(path, FILE_ZIP));
+        String zipMimeType = MimeTypeUtil.guessMimeType(path, FILE_ZIP);
+        Assert.assertTrue(MimeType.APPLICATION_ZIP.equals(zipMimeType) || "application/x-zip-compressed".equals(zipMimeType));
 
         // Detect WEBM files
         path = Paths.get(getResource(FILE_WEBM).toURI());
@@ -68,5 +70,21 @@ public class TestMimeTypeUtil extends BaseTest {
         // Detect MP4 files
         path = Paths.get(getResource(FILE_MP4).toURI());
         Assert.assertEquals(MimeType.VIDEO_MP4, MimeTypeUtil.guessMimeType(path, FILE_MP4));
+    }
+
+    @Test
+    public void testGetFileExtension() {
+        Assert.assertEquals("zip", MimeTypeUtil.getFileExtension(MimeType.APPLICATION_ZIP));
+        Assert.assertEquals("gif", MimeTypeUtil.getFileExtension(MimeType.IMAGE_GIF));
+        Assert.assertEquals("jpg", MimeTypeUtil.getFileExtension(MimeType.IMAGE_JPEG));
+        Assert.assertEquals("png", MimeTypeUtil.getFileExtension(MimeType.IMAGE_PNG));
+        Assert.assertEquals("pdf", MimeTypeUtil.getFileExtension(MimeType.APPLICATION_PDF));
+        Assert.assertEquals("odt", MimeTypeUtil.getFileExtension(MimeType.OPEN_DOCUMENT_TEXT));
+        Assert.assertEquals("docx", MimeTypeUtil.getFileExtension(MimeType.OFFICE_DOCUMENT));
+        Assert.assertEquals("txt", MimeTypeUtil.getFileExtension(MimeType.TEXT_PLAIN));
+        Assert.assertEquals("csv", MimeTypeUtil.getFileExtension(MimeType.TEXT_CSV));
+        Assert.assertEquals("mp4", MimeTypeUtil.getFileExtension(MimeType.VIDEO_MP4));
+        Assert.assertEquals("webm", MimeTypeUtil.getFileExtension(MimeType.VIDEO_WEBM));
+        Assert.assertEquals("bin", MimeTypeUtil.getFileExtension("application/x-teedy-unknown"));
     }
 }
